@@ -1,10 +1,11 @@
+import { useNavigate } from 'react-router-dom'
 
 export const Terms = () => {
-    
+    const navigate = useNavigate()
     return(
         <div>
             <div className="border-b p-4 flex justify-between items-center fixed top-0 left-0 w-full bg-white md:text-2xl text-lg">
-                <span className="fa fa-arrow-left cursor-pointer"/>
+                <span className="fa fa-arrow-left cursor-pointer" onClick={() => navigate('/')}/>
                 <h1 className="md:text-4xl text-lg">Terms & Conditions</h1>
                 <button className="p-2 px-8 bg-blue-500 cursor-pointer text-white"> Done! </button>
             </div>
@@ -82,10 +83,11 @@ export const Terms = () => {
 }
 
 export const Policy = () => {
+    const navigate = useNavigate()
     return(
        <div>
     <div className="border-b p-4 flex justify-between items-center fixed top-0 left-0 w-full bg-white md:text-2xl text-lg">
-        <span className="fa fa-arrow-left cursor-pointer"/>
+        <span className="fa fa-arrow-left cursor-pointer" onClick={() => navigate('/')}/>
         <h1 className="md:text-4xl text-lg">Privacy Policy</h1>
         <button className="p-2 px-8 bg-blue-500 cursor-pointer text-white"> Done! </button>
     </div>
