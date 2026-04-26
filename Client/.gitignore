@@ -28,5 +28,5 @@ Templates
 .env
 
 # Custom files
-files.txt
+/files.txt
 /Templates
