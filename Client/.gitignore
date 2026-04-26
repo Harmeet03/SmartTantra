@@ -26,6 +26,7 @@ Templates
 
 # Environment variables
 .env
+**/.env
 
 # Custom files
 /Templates
