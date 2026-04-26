@@ -1,7 +1,69 @@
+import { useState, useEffect } from "react"
+
 import UserLayout from "../../../layouts/UserLayout"
-import Sample from '../../../assets/sample.webp'
+import ProductCard from "../../../components/cards/ProductCard"
+import Loader from '../../../components/common/Loader'
+import { getProducts } from '../../../services/productsAPI'
+import useTitle from "../../../hooks/useTitle"
+import { all } from "axios"
 
 const Store = () => {
+    useTitle('Smart Store | SmartTantra')
+
+    const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [info, setInfo] = useState('')
+    const [error, setError] = useState(false)
+    const [search, setSearch] = useState('')
+
+    const filteredProducts = products.filter((product) => 
+        `${product.name} ${product.description} ${product.price}`
+        .toLowerCase()
+        .includes(search.toLowerCase())
+    )
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try{
+                const res = await getProducts()
+                if(res.session === null){
+                    setInfo(res.message)
+                    setError(true)
+                }
+                else{
+                    setProducts(res.products)
+                    setError(false)
+                }
+            }
+            catch(e){
+                console.error('Unable to fetch products: ', e)
+                setInfo(e.response?.data?.message || 'Unable to fetch products!')
+                setError(true)
+            }
+            finally{
+                setLoading(false)
+            }
+        }
+
+        fetchProducts()
+    }, [])
+
+    if(loading){
+        return(
+            <UserLayout>
+                <Loader/>
+            </UserLayout>
+        )
+    }
+
+    if(error){
+        return(
+            <UserLayout>
+                <p className="text-center py-70 text-2xl"> {info} </p>
+            </UserLayout>
+        )
+    }
+
     return(
         <UserLayout>
             <div className="bg-green-600 p-2 text-sm rounded-lg text-center">
@@ -14,19 +76,37 @@ const Store = () => {
                     <p className="text-sm"> Browse our collection - RFID will auto-scan your picks. </p>
                 </div>
                 <span className="fa fa-bag-shopping text-6xl"/>
-            </div>
+            </div> 
 
-            <div className="flex flex-col md:flex-row gap-16 p-8 border-b">
-                <div className="md:w-1/3 flex justify-center">
-                    <img src={Sample} className="w-full"/>
-                </div>
-                <div className="flex flex-col gap-4 sm:gap-8 justify-center">
-                    <span className="bg-yellow-500 w-24 px-2 py-1 rounded-full text-xs"> High demand </span>
-                    <h1 className="text-3xl sm:text-5xl"> Product Name </h1>
-                    <p className="text-sm sm:text-xl"> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-            </div>
-            
+            {/* Product Searching OR Filtering */}
+            <div className="bg-yellow-500 p-2 text-sm rounded-lg text-center">
+                <input 
+                    type="text"
+                    placeholder="Search for products..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-white bg-yellow-300 text-black"    
+                />
+            </div> 
+
+            {filteredProducts.length > 0 ? ( 
+                <h1 className="text-4xl pt-4"> Trending Products: </h1> 
+            ): null}
+
+            {
+                products.length === 0 ? (
+                    <p className="text-center py-40 text-2xl"> No items available right now! </p>
+                ) : 
+                filteredProducts.length === 0 ? (
+                    <p className="text-center py-40 text-2xl"> No matching products found for <i className="text-yellow-500">{search}</i> ! </p>
+                ) : 
+                (
+                    filteredProducts.map((product) => (
+                        <ProductCard key={product._id} product={product}/>
+                    ))
+                )
+            }
+
         </UserLayout>
     )
 }

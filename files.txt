@@ -1,0 +1,67 @@
+FRONTEND
+
+/src
+    /assets (This stores all the images of the whole project)
+    
+    /components
+        /cards
+            /ProductCard.jsx (This is product card that is being reused)
+	    
+        /common  (Reusable components that are almost being used in each and every pages.)
+            /Footer.jsx
+            /Navbar.jsx
+            /Loader.jsx
+	    
+        /gaurds  (These basically are route handler or access controller based on the specific rules.)
+            /ProtectedRoutes.jsx
+            /PublicOnlyRoutes.jsx
+            /SessionRoutes.jsx
+        
+    /layouts
+        /UserLayout.jsx (This is whole project's layout for users that are authentic only.)
+    
+    /pages (This is where all our project's main pages are located.)
+        /auth (This aunthicates the user LOGIN/REGISTER)
+        /public (This is for guests users who are not authentic yet.)
+        /user (This is for authentic users only.)
+            /checkout
+            /store (Includes store, cart, profile, order pages)
+    
+    /routes 
+        /AppRoutes.jsx
+        /AuthRoutess.jsx (Routes for authentication)
+        /PublicRoutes.jsx (Public accessible Routes)
+        /UserRoutess.jsx (Used accessible routes only)
+
+    /services (Consists all the APIs we are calling from backend.)
+        
+BACKEND
+
+/Server
+    /config (For cors and database configuration)
+
+    /controller (For handling various types of data from database)
+
+    /middleware (It acts as a shield to prevent any unauthorised access to the backend)
+
+    /models (It consists many database models or schemas we are using)
+        /Order.js
+        /Product.js
+        /Session.js
+        /User.js
+
+    /routes (It provides a bridge between a controller and express)
+
+    /script
+        /seedProducts.js (If triggered, it will rewrite the product's data in MongoDB)
+
+    /utils
+        /generateToken.js (It will generate JWT token for every new user once they are authenticated)
+
+
+IOT HARDWARE
+
+/IoT
+    /node_bridge (It's a bridge that helps in sending data from IOT's hardware to Node.js's backend)
+        Serial.js (It detects the port from the computer and recieves data from it in order to send it to the backend)
+

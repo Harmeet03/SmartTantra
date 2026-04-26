@@ -1,45 +1,33 @@
 import { Routes, Route } from 'react-router-dom'
 
-import { Terms, Policy } from '../pages/public/Terms'
-import Landing from '../pages/public/Landing'
-import Login from '../pages/auth/Login'
-import Register from '../pages/auth/Register'
+import PublicRoutes from './PublicRoutes'
+import UserRoutes from './UserRoutes'
+import AuthRoutes from './AuthRoutes'
 
 import EnterStore from '../pages/user/store/EnterStore'
-
-import Store from '../pages/user/store/Store'
+import Protected from '../components/gaurds/ProtectedRoute'
+import NotFound from '../pages/NotFound.jsx'
 
 const AppRoutes = () => {
     return(
         <Routes>
-            <Route path='/' element={
-                <Landing/>
-            }/>
+           
+            { PublicRoutes() }
 
-            <Route path='/terms' element={
-                <Terms/>
-            }/>
+            { AuthRoutes() }
 
-            <Route path='/privacy-policy' element={
-                <Policy/>
-            }/>
-
-            <Route path='/sign_in' element={
-                <Login/>
-            }/>
-
-            <Route path='/sign_up' element={
-                <Register/>
-            }/>
+            { UserRoutes() }
 
             <Route path='/enter-store' element={
-                <EnterStore/>
+                <Protected>
+                    <EnterStore/>
+                </Protected>
             }/>
 
-            <Route path='/user/store' element={
-                <Store/>
+            <Route path='*' element={
+                <NotFound/>
             }/>
-
+            
       </Routes>
     )
 }

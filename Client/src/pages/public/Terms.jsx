@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom'
+import useTitle from '../../hooks/useTitle'
 
 export const Terms = () => {
+    useTitle('Terms, Policy & Conditions | SmartTantra')
+    
     const navigate = useNavigate()
     return(
         <div>
@@ -14,8 +17,8 @@ export const Terms = () => {
                 <section>
                     <h2 className='text-4xl'>1. Introduction</h2>
                     <p className='mx-10'>
-                    Welcome to ClothTantra. These Terms and Conditions govern your use of
-                    the ClothTantra smart retail platform including the website, RFID
+                    Welcome to SmartTantra. These Terms and Conditions govern your use of
+                    the SmartTantra smart retail platform including the website, RFID
                     based checkout system, and related services.
                     </p>
                 </section><br/>
@@ -23,7 +26,7 @@ export const Terms = () => {
                 <section>
                     <h2 className='text-4xl'>2. Use of Platform</h2>
                     <p className='mx-10'>
-                    By accessing ClothTantra, users agree to provide accurate account
+                    By accessing SmartTantra, users agree to provide accurate account
                     information and use the system responsibly.
                     </p>
                 </section><br/>
@@ -50,7 +53,7 @@ export const Terms = () => {
                     <h2 className='text-4xl'>5. Payments</h2>
                     <p className='mx-10'>
                     All payments are securely processed using a third-party payment
-                    gateway. ClothTantra does not store sensitive financial information.
+                    gateway. SmartTantra does not store sensitive financial information.
                     </p>
                 </section><br/>
 
@@ -65,7 +68,7 @@ export const Terms = () => {
                 <section>
                     <h2 className='text-4xl'>7. Limitation of Liability</h2>
                     <p className='mx-10'>
-                    ClothTantra is not responsible for network issues, device failures, or
+                    SmartTantra is not responsible for network issues, device failures, or
                     payment gateway interruptions caused by third-party systems.
                     </p>
                 </section><br/>
@@ -98,17 +101,17 @@ export const Policy = () => {
         <section>
             <h2 className='text-4xl'>1. Introduction</h2>
             <p className='mx-10'>
-            ClothTantra values the privacy of its users and is committed to
+            SmartTantra values the privacy of its users and is committed to
             protecting personal information collected through the platform.
             This Privacy Policy explains how user data is collected, used,
-            and safeguarded while using the ClothTantra smart retail system.
+            and safeguarded while using the SmartTantra smart retail system.
             </p>
         </section><br/>
 
         <section>
             <h2 className='text-4xl'>2. Information We Collect</h2>
             <p className='mx-10'>
-            When users register or interact with the ClothTantra platform,
+            When users register or interact with the SmartTantra platform,
             basic information such as name, email address, account credentials,
             and purchase history may be collected to enable account management
             and transaction processing.
@@ -128,7 +131,7 @@ export const Policy = () => {
         <section>
             <h2 className='text-4xl'>4. RFID Technology Usage</h2>
             <p className='mx-10'>
-            ClothTantra uses RFID technology to detect products scanned at
+            SmartTantra uses RFID technology to detect products scanned at
             the billing counter. The RFID system only identifies products
             and does not collect personal biometric data or track users
             physically inside the store.
@@ -139,7 +142,7 @@ export const Policy = () => {
             <h2 className='text-4xl'>5. Payment Processing</h2>
             <p className='mx-10'>
             Payments are securely processed through a third-party payment
-            gateway. ClothTantra does not store credit card details, banking
+            gateway. SmartTantra does not store credit card details, banking
             information, or other sensitive financial data on its servers.
             </p>
         </section><br/>
@@ -156,7 +159,7 @@ export const Policy = () => {
         <section>
             <h2 className='text-4xl'>7. Data Protection</h2>
             <p className='mx-10'>
-            ClothTantra implements authentication systems, secure server
+            SmartTantra implements authentication systems, secure server
             communication, and restricted administrative access to protect
             user information from unauthorized access or misuse.
             </p>

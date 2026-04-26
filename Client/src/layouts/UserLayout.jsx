@@ -10,7 +10,7 @@ const UserLayout = ({children}) => {
                 {children}
             </main>
 
-            <div className="text-white flex justify-between px-16 py-2 fixed bottom-0 left-0 w-full bg-gray-800">
+            <div className="text-white px-4 text-xs sm:text-sm flex justify-between lg:px-16 py-2 fixed bottom-0 left-0 w-full bg-gray-800">
                 <p> RFID Scanner : <span className="text-green-500"> Active </span> </p>
                 <p> <span className="text-yellow-500"> Proceed to Counter </span> and scan items for <span className="text-blue-500"> payment </span> </p>
             </div>

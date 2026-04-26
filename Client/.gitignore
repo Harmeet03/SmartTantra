@@ -23,3 +23,10 @@ Templates
 *.njsproj
 *.sln
 *.sw?
+
+# Environment variables
+.env
+
+# Custom files
+files.txt
+/Templates
