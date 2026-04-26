@@ -20,6 +20,14 @@ yarn-error.log*
 .env.*
 !.env.example
 
+# env files
+.env
+**/.env
+
+# node modules
+node_modules/
+**/node_modules/
+
 # =========================
 # Build folders
 # =========================
