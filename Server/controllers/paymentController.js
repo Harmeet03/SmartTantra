@@ -1,13 +1,16 @@
 import crypto from "crypto"
 
-import razorpay from "../config/razorpay.js";
 import Order from "../models/Order.js";
 import Session from "../models/Session.js"
+import getRazorpay from "../config/razorpay.js";
 
 export const createOrder = async (req, res) => {
+    const razorpay = getRazorpay()
     try{
         const user = req.user
         const session = req.session 
+
+        await session.populate('cart.productId')
 
         const items = session.cart.map(item => ({
             productId: item.productId._id,
@@ -46,11 +49,16 @@ export const createOrder = async (req, res) => {
         res.status(200).json({
             success: true,
             message: "Order created successfully!",
-            razorpayOrder
+            order: {
+                id: razorpayOrder.id,
+                amount: razorpayOrder.amount,
+                receipt: razorpayOrder.receipt
+            }
         })
     }
     catch(e){
-        res.status(500).json({ 
+        console.error('Order creation error: ', e)
+        return res.status(500).json({ 
             success: false, 
             message: "Failed to create order!"
         })
@@ -97,9 +105,15 @@ export const verifyPayment = async (req, res) => {
         order.status = "paid"
         await order.save()
 
-        await Session.findByIdAndUpdate(order.sessionId, {
-            status:  "completed"
-        })
+        const updated = await Session.findByIdAndUpdate(order.sessionId, 
+            {
+                status:  "completed"
+            },
+
+            {
+                new: true
+            }
+        )
 
         return res.json({ 
             success: true,

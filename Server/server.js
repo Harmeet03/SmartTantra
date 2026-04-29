@@ -1,7 +1,9 @@
+import dotenv from 'dotenv'
+dotenv.config();
+
 import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
-import dotenv from 'dotenv'
 
 import database from './config/database.js'
 import { corsOptions } from './config/cors.js'
@@ -12,8 +14,6 @@ import sessionRoute from './routes/sessionRoutes.js'
 import productRoute from './routes/productRoutes.js'
 import rfidRoutes from './routes/rfidRoutes.js'
 import paymentRoutes from './routes/paymentRoutes.js'
-
-dotenv.config();
 
 console.log('Connecting MongoDB...')
 database()

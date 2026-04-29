@@ -15,24 +15,26 @@ export const createSession =  async (req, res) => {
             })
         }
         
-        await Session.updateMany(
+         const session = await Session.findOneAndUpdate(
             {
                 counterId: 'COUNTER_1',
                 status: 'active'
             },
             {
-                status: 'expired',
-                expiresAt: new Date()
+                $set: {
+                    userId,
+                    expiresAt: Date.now() + 20 * 60 * 1000
+                },
+                $setOnInsert: {
+                    counterId: 'COUNTER_1',
+                    status: 'active'
+                }
+            },
+            {
+                new: true,
+                upsert: true
             }
         )
-        
-        // CREATING NEW SESSION
-        const session = await Session.create({
-            userId,
-            counterId: 'COUNTER_1',
-            status: 'active',
-            expiresAt: Date.now() +  20 * 60 * 1000 // 20 minutes validity
-        })
 
         console.log('New Session Created!')
 
