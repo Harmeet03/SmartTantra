@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router"
 
 import ProductCard from "../../../components/cards/ProductCard"
 import UserLayout from "../../../layouts/UserLayout"
 import { activeSession } from "../../../services/sessionAPI"
 import useTitle from "../../../hooks/useTitle"
 import Loader from "../../../components/common/Loader"
+import razorpayPayment from "../../../utils/razorpayPayment"
 
 const Cart = () => {
     useTitle('My Cart | SmartTantra')
+
+    const navigate = useNavigate()
 
     const [cart, setCart] = useState([])
     const [info, setInfo] = useState('')
@@ -67,6 +71,15 @@ const Cart = () => {
             </UserLayout>
         )
     }
+
+    const handlePayment = async () => {
+        try{
+            await razorpayPayment(navigate)
+        }
+        catch(e){
+            console.log('Error initiating payment:', e);
+        }
+    }
     
     return(
         <UserLayout>
@@ -84,7 +97,7 @@ const Cart = () => {
                 total && (
                     <div className="flex justify-around text-black bg-yellow-500 fixed w-full left-0 bottom-12 sm:bottom-9 items-center">
                         <p className="text-sm sm:text-lg"> Total Amount: ₹{total} </p>
-                        <button className="bg-blue-500 px-2 sm:px-4 rounded-full text-black cursor-pointer"> Checkout </button>
+                        <button className="bg-blue-500 px-2 sm:px-4 rounded-full text-black cursor-pointer" onClick={handlePayment}> Checkout </button>
                     </div>
                 )
             }

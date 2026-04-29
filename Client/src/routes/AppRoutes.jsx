@@ -6,7 +6,8 @@ import AuthRoutes from './AuthRoutes'
 
 import EnterStore from '../pages/user/store/EnterStore'
 import Protected from '../components/gaurds/ProtectedRoute'
-import NotFound from '../pages/NotFound.jsx'
+import NotFound from '../pages/NotFound'
+import Receipt from '../pages/user/checkout/Receipt'
 
 const AppRoutes = () => {
     return(
@@ -21,6 +22,12 @@ const AppRoutes = () => {
             <Route path='/enter-store' element={
                 <Protected>
                     <EnterStore/>
+                </Protected>
+            }/>
+
+            <Route path='/checkout/receipt' element={
+                <Protected>
+                    <Receipt/>
                 </Protected>
             }/>
 
