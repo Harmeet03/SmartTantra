@@ -11,6 +11,7 @@ import profileRoute from './routes/profileRoute.js'
 import sessionRoute from './routes/sessionRoutes.js'
 import productRoute from './routes/productRoutes.js'
 import rfidRoutes from './routes/rfidRoutes.js'
+import paymentRoutes from './routes/paymentRoutes.js'
 
 dotenv.config();
 
@@ -38,3 +39,4 @@ app.use('/user', profileRoute)
 app.use('/session', sessionRoute)
 app.use('/products', productRoute)
 app.use('/rfid', rfidRoutes)
+app.use('/payment', paymentRoutes)
