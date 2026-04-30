@@ -26,7 +26,7 @@ export const createOrder = async (req, res) => {
         const options = {
             amount: totalAmount * 100,
             currency: "INR",
-            receipt: `smart_tantra_receipt_${new Date().getTime()}`,
+            receipt: `s_t_receipt_${new Date().getTime()}`,
 
             notes: {
                 name: user.name,
