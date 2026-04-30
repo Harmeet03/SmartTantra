@@ -49,15 +49,15 @@ const EnterStore = () => {
 
     return(
         <div className='min-h-screen flex flex-col justify-center items-center bg-black text-white'>
-            <div className='flex flex-col items-center gap-4'>
-                <img src={Logo} className='w-15'/>
-                <p className='text-2xl'> SmartTantra </p>
+            <div className="flex items-center gap-2 mb-4">
+                <img src={Logo} width={20} className='w-8'/>
+                <h1 className="text-2xl"> SmartTantra </h1>
             </div>
 
             {
                 status === 'loading' && (
                     <>
-                        <div className='w-16 h-16 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin mt-10'/>
+                        <div className='w-16 h-16 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin mt-5'/>
                         <p className='text-sm mt-4'> Please wait while we verify your store session. </p>
                     </>
                 )
@@ -66,7 +66,7 @@ const EnterStore = () => {
             {
                 status === 'error' && (
                     <>
-                        <p className='text-red-500 text-lg mt-10 text-center'> Oops! We couldn't verify your session. Please scan the <span className='text-yellow-500 border-b-3 border-red-500'> QR Code </span> again. </p>
+                        <p className='text-red-500 text-lg mt-5 text-center'> Oops! We couldn't verify your session. Please scan the <span className='text-yellow-500 border-b-3 border-red-500'> QR Code </span> again. </p>
                         {info && <p className='text-sm mt-4 text-yellow-500'> {info} </p>}
                     </>
                 )
@@ -75,7 +75,7 @@ const EnterStore = () => {
             {
                 status === 'success' && (
                     <>
-                        <p className='text-green-500 text-lg mt-10'> Session verified! </p>
+                        <p className='text-green-500 text-lg mt-5'> Session verified! </p>
                         <p className=''> Redirecting to store... </p>
                     </>
                 )

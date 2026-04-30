@@ -52,29 +52,41 @@ const Receipt = () => {
     
     
     return(
-        <main className="h-screen flex flex-col items-center justify-center gap-8">
+        <main className="h-screen flex flex-col items-center pt-16 gap-8">
             <div className="flex items-center gap-2">
                 <img src={Logo} width={20} className='w-8'/>
                 <h1 className="text-2xl"> SmartTantra </h1>
             </div>
             
-            <div>
+            <div className="max-w-md mx-auto bg-white text-black p-6 rounded-xl shadow-lg">
                 <ReceiptIndianRupee className="w-12 h-12 mx-auto" stroke="green"/>
-                <h2 className="text-green-600 text-xl"> Thankyou for shopping with us. </h2>
+                <h2 className="text-green-600 text-xl text-center"> 
+                    Thank you for shopping with us. 
+                </h2>
 
-                <div className="w-full my-4 border">
-                    <div className="border flex p-1 items-center">
-                        <p className="w-1/4 border-r text-sm"> Order_id </p>
-                        <p className="w-3/4 ml-1 text-right text-sm"> {orderId} dfdf </p>
+                <hr className="my-4 border-gray-300" />
+
+                <div className="w-full my-4 borde">
+                    <div className="flex justify-between py-2">
+                        <span className="text-gray-500 text-sm">Order ID</span>
+                        <span className="font-medium text-sm">{orderId}</span>
                     </div>
-                    <div className="border flex p-1 items-center">
-                        <p className="w-1/4 border-r text-sm"> Receipt </p>
-                        <p className="w-3/4 ml-1 text-right text-sm"> {receipt} ssd </p>
+                    <div className="flex justify-between py-2">
+                        <p className="text-gray-500 text-sm"> Receipt </p>
+                        <p className="font-medium text-sm"> {receipt} </p>
                     </div>
-                    <div className="border flex p-1 items-center">
-                        <p className="w-1/4 border-r text-sm"> Amount </p>
-                        <p className="w-3/4 ml-1 text-right text-sm"> ₹{amount} 123 </p>
+                    
+                    <hr className="my-4 border-gray-300" />
+
+                    <div className="text-center mt-2">
+                        <p className="text-sm text-gray-500">Total Paid</p>
+                        <p className="text-4xl font-bold text-yellow-500 mt-1">
+                            ₹{amount}
+                        </p>
                     </div>
+                    <p className="text-xs text-gray-400 text-center mt-4">
+                        {new Date().toLocaleString()}
+                    </p>
                 </div>
 
                 <div>
@@ -87,7 +99,7 @@ const Receipt = () => {
                 {
                     !isEmpty && !error && 
                     <p className="print:hidden"> 
-                        Your <span className="text-yellow-500"> current session </span> has been <span className="text-red-600"> terminated. </span> 
+                        Your <span className="text-yellow-500"> current session </span> has been <span className="text-red-600"> completed. </span> 
                         <span className="text-yellow-500"> Visit us again! </span> Bye.
                     </p>
                 }

@@ -138,8 +138,8 @@ const Landing = () => {
                     <div className='pt-30 pb-10 text-white flex flex-col justify-center min-h-screen text-center items-center gap-4'>
                         <p className='text-3xl'> Welcome, {data.name} </p>
                         <p className='text-lg'> Scan the entry QR to start your store session. </p>
-                        <img src={QR} className='w-40 h-40'/>
-                        <p className='text-sm text-yellow-500'> Scan this QR Code. </p>
+                        {/* <img src={QR} className='w-40 h-40'/> */}
+                        <p className='text-sm text-yellow-500'> Scan the QR Code at the store's entrance. </p>
                     </div>
                 )
             }
