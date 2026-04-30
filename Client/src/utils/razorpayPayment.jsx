@@ -53,7 +53,7 @@ const razorpayPayment = async (navigate) => {
         },
 
         theme: {
-            color: "#f5d019"
+            color: "#ffd500"
         }
     }
 
