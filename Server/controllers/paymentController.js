@@ -39,8 +39,8 @@ export const createOrder = async (req, res) => {
 
         const order = await Order.create({
             userId: user._id,
-            items,
             sessionId: session._id,
+            items,
             amount: totalAmount,
             razorpayOrderId: razorpayOrder.id,
             status: "pending"

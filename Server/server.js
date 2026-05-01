@@ -14,6 +14,7 @@ import sessionRoute from './routes/sessionRoutes.js'
 import productRoute from './routes/productRoutes.js'
 import rfidRoutes from './routes/rfidRoutes.js'
 import paymentRoutes from './routes/paymentRoutes.js'
+import orderRoutes from './routes/orderRoutes.js'
 
 console.log('Connecting MongoDB...')
 database()
@@ -40,3 +41,4 @@ app.use('/session', sessionRoute)
 app.use('/products', productRoute)
 app.use('/rfid', rfidRoutes)
 app.use('/payment', paymentRoutes)
+app.use('/orders', orderRoutes)
