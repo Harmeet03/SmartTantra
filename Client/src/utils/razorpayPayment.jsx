@@ -1,4 +1,4 @@
-import { payment, verifyPayment } from "../services/paymentAPI"
+import { payment, verifyPayment, markFailed } from "../services/paymentAPI"
 
 const razorpayPayment = async (navigate) => {
     const { order } = await payment()
@@ -23,18 +23,19 @@ const razorpayPayment = async (navigate) => {
                             orderId: order.id,
                             amount: order.amount / 100,
                             receipt: order.receipt,
-                            error: false,
+                            error: false
                         }
                     })
                 }
                 else{
                     alert("Payment verification failed!")
+
                     navigate('/checkout/receipt', {
                         state: {
                             orderId: order.id,
                             amount: order.amount / 100,
                             receipt: order.receipt,
-                            error: true,
+                            error: true
                         }
                     })
                 }
@@ -51,6 +52,16 @@ const razorpayPayment = async (navigate) => {
                 })
             }
         },
+        
+        modal: {
+            ondismiss: async () => {
+                try {
+                    await markFailed(order.id)
+                } catch (e) {
+                    console.error("Failed to mark order as failed:", e)
+                }
+            }
+        },
 
         theme: {
             color: "#ffd500"
@@ -60,5 +71,6 @@ const razorpayPayment = async (navigate) => {
     const rzp = new window.Razorpay(options)
     rzp.open()
 }
+
 
 export default razorpayPayment

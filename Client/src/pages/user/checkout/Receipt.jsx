@@ -13,7 +13,6 @@ const Receipt = () => {
     useTitle('Your Receipt | SmartTantra')
 
     const { orderId, amount, receipt, error } = location.state || {}
-
     const isEmpty = !orderId || !amount
 
     if(isEmpty){
@@ -49,7 +48,6 @@ const Receipt = () => {
     const handleDownload = () => {
         window.print()
     }
-    
     
     return(
         <main className="h-screen flex flex-col items-center pt-16 gap-8">
