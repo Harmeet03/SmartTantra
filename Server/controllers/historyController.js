@@ -14,6 +14,7 @@ export const orderHistory = async (req, res) => {
 
         const formattedOrders = orders.map(order => ({
             items: order.items.map(item => ({
+                _id: item.productId._id,
                 image: item.productId.image,
                 name: item.name,
                 quantity: item.quantity

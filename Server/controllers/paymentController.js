@@ -76,13 +76,6 @@ export const verifyPayment = async (req, res) => {
             .update(body.toString())
             .digest("hex")
 
-        if (expectedSignature !== razorpay_signature) {
-            return res.status(400).json({ 
-                success: false,
-                message: "Invalid payment signature!"
-            })
-        } 
-
         const order = await Order.findOne({
             razorpayOrderId: razorpay_order_id
         })
@@ -93,6 +86,16 @@ export const verifyPayment = async (req, res) => {
                 message: "Order not found!"
             })
         }
+
+        if (expectedSignature !== razorpay_signature) {
+            order.status = "failed"
+            await order.save()
+
+            return res.status(400).json({ 
+                success: false,
+                message: "Invalid payment signature!"
+            })
+        } 
 
         if (order.status === "paid") {
             return res.json({
@@ -105,13 +108,9 @@ export const verifyPayment = async (req, res) => {
         order.status = "paid"
         await order.save()
 
-        const updated = await Session.findByIdAndUpdate(order.sessionId, 
+        await Session.findByIdAndUpdate(order.sessionId, 
             {
                 status:  "completed"
-            },
-
-            {
-                new: true
             }
         )
 
@@ -126,6 +125,42 @@ export const verifyPayment = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: "Payment verification failed!"
+        })
+    }
+}
+
+// IF PAYMENT FAILED THIS WILL BE CALLED BY RAZORPAY
+export const markPaymentFailed = async (req, res) => {
+    try {
+        const { razorpay_order_id } = req.body
+
+        const order = await Order.findOne({
+            razorpayOrderId: razorpay_order_id
+        })
+
+        if (!order) {
+            return res.status(404).json({
+                success: false,
+                message: "Order not found"
+            })
+        }
+
+        if (order.status === "pending") {
+            order.status = "failed"
+            await order.save()
+        }
+
+        return res.json({
+            success: true,
+            message: "Order marked as failed"
+        })
+    }
+    catch (e) {
+        console.error("Mark failed error:", e)
+
+        return res.status(500).json({
+            success: false,
+            message: "Failed to update order"
         })
     }
 }
