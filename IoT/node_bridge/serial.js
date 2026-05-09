@@ -23,6 +23,11 @@ parser.on('data', async (data) => {
     
   if (!tag) return
 
+  // ✅ Ignore invalid serial messages
+  if (!/^[A-F0-9]{8}$/.test(tag)) {
+    return
+  }
+
   // De-duplicate rapid repeats (same tag within 1s)
   const now = Date.now()
   if (tag === lastTag && now - lastTime < 1000) return
