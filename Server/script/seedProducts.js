@@ -11,7 +11,7 @@ const products = [
         name: "SanDisk Pendrive",
         description: "50GB USB 3.0",
         price: 799,
-        rfidTag: "42572EA9F1C90", // Anubhab's tag
+        rfidTag: "470342A471A90", // Anubhab's tag
         stock: 10
     },
     {

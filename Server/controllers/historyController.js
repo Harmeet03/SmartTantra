@@ -11,6 +11,7 @@ export const orderHistory = async (req, res) => {
             path: 'items.productId',
             select: 'image'
         })
+        .sort({ createdAt: -1 })
 
         const formattedOrders = orders.map(order => ({
             items: order.items.map(item => ({
