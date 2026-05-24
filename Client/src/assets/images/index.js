@@ -4,7 +4,7 @@ import Intro from './Intro.jpeg'
 import QR from './QR.png'
 
 import SanDisk from './products/PenDrive.png'
-import boAt from './products/Earbuds.png'
+import boAt from './products/EaRbuds.png'
 import Tshirt from './products/Tshirt.png'
 import Perfume from './products/Perfume.png'
 
