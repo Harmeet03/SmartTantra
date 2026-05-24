@@ -43,7 +43,7 @@ const Landing = () => {
                 setLoading(false)
             }
         }
-
+        
         check()
     }, [])
 
@@ -139,7 +139,12 @@ const Landing = () => {
                         <p className='text-3xl'> Welcome, {data.name} </p>
                         <p className='text-lg'> Scan the entry QR to start your store session. </p>
                         {/* <img src={QR} className='w-40 h-40'/> */}
-                        <p className='text-sm text-yellow-500'> Scan the QR Code at the store's entrance. </p>
+                        <p className='text-sm text-yellow-500'> Scan the QR Code at the store's entrance. <br/>
+                            (It's in my <a className='underline' target='__' 
+                                           href={'https://github.com/Harmeet03/SmartTantra/blob/main/Client/src/assets/images/QR.png'}>
+                                             GitHub
+                                        </a>) 
+                        </p>
                     </div>
                 )
             }
