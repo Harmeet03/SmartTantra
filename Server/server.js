@@ -30,6 +30,12 @@ app.get('/', (req, res) => {
     res.send('Welcome to ClothTantra API.')
 })
 
+app.get("/health", (req, res) => {
+    res.status(200).json({ 
+        status: "ok" 
+    });
+});
+
 app.listen(PORT, () => {
     console.log('Server is running now!')
     console.log(`Visit http://localhost:${PORT}`)
