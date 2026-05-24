@@ -1,6 +1,6 @@
 const allowedOrigins = [ 
     'http://localhost:5173',
-    'https://smart-tantra-2ln5.vercel.app'
+    'https://smart-tantra.vercel.app/'
 ] 
 
 export const corsOptions = {
