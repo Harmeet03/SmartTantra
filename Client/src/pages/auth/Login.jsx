@@ -59,7 +59,7 @@ const Login = () => {
                     <form onSubmit={handleSubmit}>
                         <input required onChange={handleChange} value={form.email} name='email' type="text" placeholder="Email" className="bg-gray-900 p-2 rounded-lg w-3/4"/>
                         <input required onChange={handleChange} value={form.password} name='password' type="password" placeholder="Password" className="bg-gray-900 p-2 rounded-lg w-3/4 mt-4"/><br/><br/>
-                        <input required name='checkbox' type='checkbox' required/> I agree with <span className='text-yellow-500 cursor-pointer hover:text-yellow-300 duration-200' onClick={() => {navigate('/terms')}}>Terms</span> and <span className='text-yellow-500 cursor-pointer hover:text-yellow-300 duration-200' onClick={() => {navigate('/privacy-policy')}}>Policy</span>
+                        <input required name='checkbox' type='checkbox'/> I agree with <span className='text-yellow-500 cursor-pointer hover:text-yellow-300 duration-200' onClick={() => {navigate('/terms')}}>Terms</span> and <span className='text-yellow-500 cursor-pointer hover:text-yellow-300 duration-200' onClick={() => {navigate('/privacy-policy')}}>Policy</span>
                         
                         {
                             loading ? (

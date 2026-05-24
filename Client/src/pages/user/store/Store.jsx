@@ -5,7 +5,6 @@ import ProductCard from "../../../components/cards/ProductCard"
 import Loader from '../../../components/common/Loader'
 import { getProducts } from '../../../services/productsAPI'
 import useTitle from "../../../hooks/useTitle"
-import { all } from "axios"
 
 const Store = () => {
     useTitle('Smart Store | SmartTantra')
