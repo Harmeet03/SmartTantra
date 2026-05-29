@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/react"
+
 import { BrowserRouter as Router } from 'react-router-dom'
 import AppRoutes from './routes/AppRoutes'
 import {useEffect, useState} from 'react'
@@ -22,7 +24,7 @@ function App() {
         setHealth('Disconnected')
       }
       finally{
-        setTimeout(healthCheck, 5000) // Check every 30 seconds
+        setTimeout(healthCheck, 30000) // Check every 30 seconds
       }
     }
 
@@ -41,6 +43,8 @@ function App() {
       <p className='fixed text-center bottom-13 sm:bottom-10 bg-yellow-500 px-2 py-1 rounded-lg mx-2'> Server Status: 
         <span className={`italic font-medium ${health === 'Connected' ? 'text-green-700' : health === 'Disconnected' ? 'text-red-700' : 'text-orange-700'}`}> {health} </span> 
       </p>
+
+      <Analytics />
     </Router>
   )
 }
